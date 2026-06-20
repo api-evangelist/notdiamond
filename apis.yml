@@ -1,0 +1,124 @@
+aid: notdiamond
+url: https://raw.githubusercontent.com/api-evangelist/notdiamond/refs/heads/main/apis.yml
+name: Not Diamond
+kind: company
+description: Not Diamond is an AI model router that determines the best LLM to call
+  for any given prompt. Its REST API routes each request to the optimal model across
+  providers based on quality, cost, and latency tradeoffs, accepts real-time feedback
+  to personalize routing, and can train custom routers from evaluation datasets.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- LLM
+- Model Routing
+- Router
+- Orchestration
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: notdiamond:notdiamond-model-select-api
+  name: Not Diamond Model Select API
+  tags:
+  - Model Routing
+  - Model Select
+  - Routing
+  - LLM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.notdiamond.ai/reference/token_model_select_v2_modelrouter_modelselect_post
+  baseURL: https://api.notdiamond.ai/v2
+  properties:
+  - url: https://docs.notdiamond.ai/docs/quickstart
+    type: Documentation
+  - url: https://docs.notdiamond.ai/reference/token_model_select_v2_modelrouter_modelselect_post
+    type: APIReference
+  - url: openapi/notdiamond-openapi.yml
+    type: OpenAPI
+  - url: collections/notdiamond.postman_collection.json
+    type: PostmanCollection
+  - url: collections/notdiamond.opencollection.json
+    type: OpenCollection
+  description: Routes a prompt to the best available LLM. Submit OpenAI-format messages
+    and a list of candidate providers, and the modelSelect endpoint returns the recommended
+    provider/model plus a session ID, honoring cost/latency/quality tradeoffs and an
+    optional preference ID for personalized or custom routing.
+- aid: notdiamond:notdiamond-models-api
+  name: Not Diamond Models API
+  tags:
+  - Models
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.notdiamond.ai/reference/list_models_v2_models_get
+  baseURL: https://api.notdiamond.ai/v2
+  properties:
+  - url: https://docs.notdiamond.ai/reference/list_models_v2_models_get
+    type: APIReference
+  - url: openapi/notdiamond-openapi.yml
+    type: OpenAPI
+  - url: collections/notdiamond.postman_collection.json
+    type: PostmanCollection
+  - url: collections/notdiamond.opencollection.json
+    type: OpenCollection
+  description: Lists supported text generation models with provider, context length,
+    and per-million-token input/output pricing, with optional filtering by provider
+    or OpenRouter support.
+- aid: notdiamond:notdiamond-feedback-api
+  name: Not Diamond Feedback API
+  tags:
+  - Feedback
+  - Personalization
+  - Metrics
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.notdiamond.ai/docs/real-time-personalization
+  baseURL: https://api.notdiamond.ai/v2
+  properties:
+  - url: https://docs.notdiamond.ai/docs/real-time-personalization
+    type: Documentation
+  - url: openapi/notdiamond-openapi.yml
+    type: OpenAPI
+  - url: collections/notdiamond.postman_collection.json
+    type: PostmanCollection
+  - url: collections/notdiamond.opencollection.json
+    type: OpenCollection
+  description: Reports outcome feedback and latency metrics against a routing session
+    so Not Diamond can continuously personalize routing decisions in real time to an
+    application's end users.
+- aid: notdiamond:notdiamond-custom-routers-api
+  name: Not Diamond Custom Routers API
+  tags:
+  - Custom Routers
+  - Training
+  - Personalization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.notdiamond.ai/reference/train_custom_router_v2_pzn_traincustomrouter_post
+  baseURL: https://api.notdiamond.ai/v2
+  properties:
+  - url: https://docs.notdiamond.ai/reference/train_custom_router_v2_pzn_traincustomrouter_post
+    type: APIReference
+  - url: openapi/notdiamond-openapi.yml
+    type: OpenAPI
+  - url: collections/notdiamond.postman_collection.json
+    type: PostmanCollection
+  - url: collections/notdiamond.opencollection.json
+    type: OpenCollection
+  description: Trains a custom router from an uploaded CSV evaluation dataset and creates
+    or updates a user preference, returning a preference ID used to drive personalized
+    routing in subsequent modelSelect calls.
+common:
+- type: GitHubOrganization
+  url: https://github.com/Not-Diamond
+- type: LinkedIn
+  url: https://www.linkedin.com/company/not-diamond
+- type: Website
+  url: https://www.notdiamond.ai
+- type: Documentation
+  url: https://docs.notdiamond.ai
+- type: Plans
+  url: plans/notdiamond-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/notdiamond-rate-limits.yml
+- type: FinOps
+  url: finops/notdiamond-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

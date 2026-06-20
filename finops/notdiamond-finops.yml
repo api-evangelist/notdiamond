@@ -1,0 +1,93 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Not Diamond
+providerId: notdiamond
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Model Routing
+- Router
+- Orchestration
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Not Diamond spend. Not Diamond charges a small fixed routing fee
+  per million tokens routed and positions itself as a cost-optimization layer that
+  reduces total LLM spend (cited 20-40% savings) by sending each prompt to the
+  cheapest model that still meets quality targets. Underlying model inference is
+  billed by the selected providers, not by Not Diamond. Exact routing fee amounts
+  are not publicly listed and are left unreconciled.
+notes: >-
+  Routing fee per 1M tokens is not publicly enumerated; verify against the Not
+  Diamond pricing page or a sales quote during reconciliation. Provider inference
+  costs are separate and billed by each underlying LLM provider.
+sources:
+- https://www.notdiamond.ai/pricing
+- https://docs.notdiamond.ai
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Not Diamond
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Not Diamond Model Router
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Not Diamond
+  PublisherName: Not Diamond
+  InvoiceIssuerName: Not Diamond
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: routed_tokens
+  description: Tokens routed through the model router, billed as a fixed fee per 1M tokens.
+  unit: tokens
+  aggregation: sum
+  dimensions:
+  - account
+  - preference_id
+- name: routing_decisions
+  description: Number of modelSelect routing decisions made.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - preference_id
+- name: provider_inference_cost
+  description: >-
+    Inference cost incurred at the selected underlying LLM provider. Billed by the
+    provider, not by Not Diamond; tracked here for total cost of ownership.
+  unit: usd
+  aggregation: sum
+  dimensions:
+  - account
+  - provider
+  - model
+principles:
+- name: Visibility
+  description: Use the Not Diamond savings/usage dashboard to see routing decisions and realized savings vs. a single-model baseline.
+- name: Allocation
+  description: Tag API keys and preference IDs per workload/team; map routed-token spend and downstream provider spend to cost centers.
+- name: Optimization
+  description: Apply cost or cost_quality_tradeoff settings so the router favors cheaper models when quality permits; train custom routers on real evaluation data to improve savings.
+- name: Accountability
+  description: Review routed-token fees and underlying provider inference costs monthly against budget per project/key.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

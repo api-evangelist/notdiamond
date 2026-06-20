@@ -1,0 +1,84 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Not Diamond
+providerId: notdiamond
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Model Routing
+- Router
+- Orchestration
+- Plans
+description: >-
+  Not Diamond offers a free-to-try Early Access tier for developers and small
+  teams and a custom-priced Enterprise tier. The routing service is billed as a
+  small fixed fee per million tokens, which Not Diamond positions as cheaper than
+  standard LLM costs; the company cites typical 20-40% cost savings from routing.
+  Exact per-token routing fees and quotas are not publicly enumerated, so usage
+  pricing is left unreconciled.
+notes: >-
+  Pricing reflects the Not Diamond pricing page (Early Access free to try;
+  Enterprise contact sales). Per-million-token routing fee amounts are not
+  publicly listed; verify exact rates with Not Diamond on reconciliation.
+sources:
+- https://www.notdiamond.ai/pricing
+- https://docs.notdiamond.ai
+plans:
+- id: notdiamond-early-access
+  name: Early Access
+  type: free
+  description: >-
+    Free-to-try tier for developers and small teams. Includes multi-harness
+    support, a savings/usage dashboard, continuous learning, and
+    privacy-preserving routing.
+  entries:
+  - label: Routing Fee
+    name: routing_fee
+    type: usage
+    metric: tokens
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: small fixed fee per 1M tokens (see provider)
+    userMultiplied: false
+  elements:
+  - name: Model Select Routing
+  - name: Multi-Harness Support
+  - name: Savings / Usage Dashboard
+  - name: Continuous Learning
+  - name: Privacy-Preserving Routing
+  - name: Feedback Personalization
+  - name: Custom Routers
+- id: notdiamond-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    For enterprise teams ready to scale. Adds organization-wide analytics,
+    advanced security and admin controls, MDM deployments, SSO with SAML, SLAs,
+    and 24/7 support. Custom pricing.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Organization-Wide Analytics
+  - name: Advanced Security & Admin Controls
+  - name: MDM Deployments
+  - name: SSO with SAML
+  - name: SLAs
+  - name: 24/7 Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

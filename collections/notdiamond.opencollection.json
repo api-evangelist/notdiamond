@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Not Diamond API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Model Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Route a prompt to the best model.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.notdiamond.ai/v2/modelRouter/modelSelect",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"<string>\" }\n  ],\n  \"llm_providers\": [\n    { \"provider\": \"openai\", \"model\": \"gpt-4o\" },\n    { \"provider\": \"anthropic\", \"model\": \"claude-3-5-sonnet-20241022\" }\n  ],\n  \"tradeoff\": \"cost\",\n  \"max_model_depth\": 2,\n  \"hash_content\": false,\n  \"metric\": \"accuracy\"\n}"
+            }
+          },
+          "docs": "Given OpenAI-format messages and a list of candidate LLM providers, returns the recommended provider/model and a session ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported models.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.notdiamond.ai/v2/models"
+          },
+          "docs": "Lists supported text generation models with provider, context length, and per-million-token pricing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feedback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Report outcome feedback for a routing session.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.notdiamond.ai/v2/report/metrics/feedback",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"session_id\": \"<string>\",\n  \"provider\": { \"provider\": \"openai\", \"model\": \"gpt-4o\" },\n  \"feedback\": { \"value\": 1 }\n}"
+            }
+          },
+          "docs": "Submits binary outcome feedback (0 or 1) for the provider selected in a routing session."
+        },
+        {
+          "info": {
+            "name": "Report latency metrics for a routing session.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.notdiamond.ai/v2/report/metrics/latency",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"session_id\": \"<string>\",\n  \"provider\": { \"provider\": \"openai\", \"model\": \"gpt-4o\" },\n  \"feedback\": { \"tokens_per_second\": 0 }\n}"
+            }
+          },
+          "docs": "Reports observed latency (e.g. tokens per second) for the provider selected in a routing session."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Routers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Train a custom router.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.notdiamond.ai/v2/pzn/trainCustomRouter",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Trains a custom router from an uploaded CSV evaluation dataset and returns a preference ID."
+        },
+        {
+          "info": {
+            "name": "Create a user preference.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.notdiamond.ai/v2/preferences/userPreferenceCreate",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Creates a user preference (router) and returns its preference ID."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+aid: notdiamond
+name: Not Diamond
+review:
+  question: Does Not Diamond expose a documented public WebSocket or streaming (SSE) API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Not Diamond's REST API is a synchronous
+    routing-decision and reporting API: modelSelect returns a single JSON
+    recommendation, and the feedback/latency/models/custom-router endpoints are
+    request/response JSON (or multipart upload). No streaming, SSE, or WebSocket
+    transport is documented, so there is no event-driven surface to model.
+findings:
+  summary: |
+    Not Diamond does not publish a documented public WebSocket or SSE API. The
+    platform exposes only synchronous REST (HTTPS) endpoints under
+    https://api.notdiamond.ai/v2, authenticated with a Bearer API key. The core
+    modelSelect endpoint returns a one-shot JSON routing decision (recommended
+    provider/model plus a session ID); the developer then makes the actual LLM
+    call to the selected provider themselves. Feedback and latency are reported
+    via plain POST endpoints, models are listed via GET, and custom routers are
+    trained via a multipart CSV upload. No realtime, bidirectional, or streaming
+    transport is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.notdiamond.ai/v2
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming endpoint is documented; modelSelect returns a single JSON response.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Not Diamond's API reference or docs as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.notdiamond.ai/v2/modelRouter/modelSelect
+    - GET  https://api.notdiamond.ai/v2/models
+    - POST https://api.notdiamond.ai/v2/report/metrics/feedback
+    - POST https://api.notdiamond.ai/v2/report/metrics/latency
+    - POST https://api.notdiamond.ai/v2/pzn/trainCustomRouter
+    - POST https://api.notdiamond.ai/v2/preferences/userPreferenceCreate
+sources:
+  - url: https://docs.notdiamond.ai
+    type: Documentation
+    note: Documents REST base URL https://api.notdiamond.ai/v2; no WebSocket or SSE mentioned.
+  - url: https://docs.notdiamond.ai/reference/token_model_select_v2_modelrouter_modelselect_post
+    type: APIReference
+    note: modelSelect is a synchronous POST returning a single JSON routing decision.
+  - url: https://docs.notdiamond.ai/docs/real-time-personalization
+    type: Documentation
+    note: Feedback is submitted via POST to report/metrics endpoints; no streaming transport.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. Not Diamond's API is entirely
+    synchronous request/response REST, so no AsyncAPI document was authored.

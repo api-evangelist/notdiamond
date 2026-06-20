@@ -1,0 +1,55 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Not Diamond
+providerId: notdiamond
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Model Routing
+- Router
+- Orchestration
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Not Diamond does not publicly document specific request or token rate limits
+  for its REST API. Access is gated by API key and account tier (Early Access vs.
+  Enterprise). The router adds roughly 100-200 ms of latency per routing decision.
+  Specific per-account RPM/TPM values are not reconciled in this artifact.
+notes: >-
+  No published rate-limit table was found on the Not Diamond docs or pricing
+  pages. Confirm per-account limits and throttling behavior with Not Diamond on
+  reconciliation.
+sources:
+- https://docs.notdiamond.ai
+- https://www.notdiamond.ai/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Not publicly documented; varies by account tier.
+- name: Tokens Per Minute (TPM)
+  scope: account
+  metric: tokens
+  limit: see provider documentation
+  notes: Not publicly documented; routing billed per 1M tokens.
+- name: Router Latency
+  scope: request
+  metric: milliseconds
+  limit: ~100-200 ms per routing decision
+  notes: Average additional latency added by the router, not a throttling limit.
+policies:
+- name: Tiered Access
+  description: Limits and capabilities differ between Early Access and Enterprise tiers.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

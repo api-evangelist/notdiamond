@@ -1,0 +1,334 @@
+{
+  "item": [
+    {
+      "id": "a1f0e2c1-0001-4001-9001-000000000001",
+      "name": "Model Routing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0e2c1-0001-4001-9001-000000000002",
+          "name": "Route a prompt to the best model.",
+          "request": {
+            "name": "Route a prompt to the best model.",
+            "description": {
+              "content": "Given OpenAI-format messages and a list of candidate LLM providers, returns the recommended provider/model and a session ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "modelRouter",
+                "modelSelect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"<string>\" }\n  ],\n  \"llm_providers\": [\n    { \"provider\": \"openai\", \"model\": \"gpt-4o\" },\n    { \"provider\": \"anthropic\", \"model\": \"claude-3-5-sonnet-20241022\" }\n  ],\n  \"tradeoff\": \"cost\",\n  \"max_model_depth\": 2,\n  \"hash_content\": false,\n  \"metric\": \"accuracy\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0e2c1-0002-4001-9001-000000000001",
+      "name": "Models",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0e2c1-0002-4001-9001-000000000002",
+          "name": "List supported models.",
+          "request": {
+            "name": "List supported models.",
+            "description": {
+              "content": "Lists supported text generation models with provider, context length, and per-million-token pricing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "provider",
+                  "value": "openai",
+                  "disabled": true
+                },
+                {
+                  "key": "openrouter_only",
+                  "value": "false",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0e2c1-0003-4001-9001-000000000001",
+      "name": "Feedback",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0e2c1-0003-4001-9001-000000000002",
+          "name": "Report outcome feedback for a routing session.",
+          "request": {
+            "name": "Report outcome feedback for a routing session.",
+            "description": {
+              "content": "Submits binary outcome feedback (0 or 1) for the provider selected in a routing session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "report",
+                "metrics",
+                "feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": { \"provider\": \"openai\", \"model\": \"gpt-4o\" },\n  \"feedback\": { \"value\": 1 }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0e2c1-0003-4001-9001-000000000003",
+          "name": "Report latency metrics for a routing session.",
+          "request": {
+            "name": "Report latency metrics for a routing session.",
+            "description": {
+              "content": "Reports observed latency (e.g. tokens per second) for the provider selected in a routing session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "report",
+                "metrics",
+                "latency"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": { \"provider\": \"openai\", \"model\": \"gpt-4o\" },\n  \"feedback\": { \"tokens_per_second\": 0 }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0e2c1-0004-4001-9001-000000000001",
+      "name": "Custom Routers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0e2c1-0004-4001-9001-000000000002",
+          "name": "Train a custom router.",
+          "request": {
+            "name": "Train a custom router.",
+            "description": {
+              "content": "Trains a custom router from an uploaded CSV evaluation dataset and returns a preference ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "pzn",
+                "trainCustomRouter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "dataset_file",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "language",
+                  "value": "english",
+                  "type": "text"
+                },
+                {
+                  "key": "llm_providers",
+                  "value": "[{\"provider\":\"openai\",\"model\":\"gpt-4o\"}]",
+                  "type": "text"
+                },
+                {
+                  "key": "prompt_column",
+                  "value": "prompt",
+                  "type": "text"
+                },
+                {
+                  "key": "maximize",
+                  "value": "true",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0e2c1-0004-4001-9001-000000000003",
+          "name": "Create a user preference.",
+          "request": {
+            "name": "Create a user preference.",
+            "description": {
+              "content": "Creates a user preference (router) and returns its preference ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "preferences",
+                "userPreferenceCreate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.notdiamond.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1f0e2c1-0000-4001-9001-000000000000",
+    "name": "Not Diamond API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Not Diamond AI model router.\n\nWebsite: https://www.notdiamond.ai\nDocs: https://docs.notdiamond.ai",
+      "type": "text/plain"
+    }
+  }
+}
