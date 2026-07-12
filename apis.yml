@@ -105,6 +105,12 @@ apis:
     or updates a user preference, returning a preference ID used to drive personalized
     routing in subsequent modelSelect calls.
 common:
+- type: DomainSecurity
+  url: security/notdiamond-domain-security.yml
+- type: Authentication
+  url: authentication/notdiamond-authentication.yml
+- url: https://www.notdiamond.ai/blog
+  type: Blog
 - type: GitHubOrganization
   url: https://github.com/Not-Diamond
 - type: LinkedIn
