@@ -105,6 +105,8 @@ apis:
     or updates a user preference, returning a preference ID used to drive personalized
     routing in subsequent modelSelect calls.
 common:
+- type: AgenticAccess
+  url: agentic-access/notdiamond-agentic-access.yml
 - type: DomainSecurity
   url: security/notdiamond-domain-security.yml
 - type: Authentication
