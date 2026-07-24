@@ -1,0 +1,154 @@
+openapi: 3.0.1
+info:
+  title: Not Diamond Custom Routers Model Routing API
+  description: REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.
+  termsOfService: https://www.notdiamond.ai/terms
+  contact:
+    name: Not Diamond
+    url: https://www.notdiamond.ai
+  version: '2.0'
+servers:
+- url: https://api.notdiamond.ai/v2
+security:
+- bearerAuth: []
+tags:
+- name: Model Routing
+paths:
+  /modelRouter/modelSelect:
+    post:
+      operationId: modelSelect
+      tags:
+      - Model Routing
+      summary: Route a prompt to the best model.
+      description: Given OpenAI-format messages and a list of candidate LLM providers, returns the recommended provider/model along with a session ID for the routing decision. Supports cost/latency tradeoffs and personalized routing via a preference ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelSelectRequest'
+      responses:
+        '200':
+          description: The recommended provider(s) and a session ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelSelectResponse'
+        '401':
+          description: Missing or invalid API key.
+        '422':
+          description: Validation error.
+components:
+  schemas:
+    Message:
+      type: object
+      description: An OpenAI-format chat message.
+      properties:
+        role:
+          type: string
+          example: user
+        content:
+          type: string
+      required:
+      - role
+      - content
+    ModelSelectResponse:
+      type: object
+      properties:
+        providers:
+          type: array
+          description: List containing the selected provider/model.
+          items:
+            $ref: '#/components/schemas/LLMProvider'
+        session_id:
+          type: string
+          description: Unique session ID for this routing decision.
+    ModelSelectRequest:
+      type: object
+      properties:
+        messages:
+          type: array
+          description: Array of OpenAI-format message objects.
+          items:
+            $ref: '#/components/schemas/Message'
+        llm_providers:
+          type: array
+          description: List of candidate LLM providers to route between. At least one required.
+          items:
+            $ref: '#/components/schemas/LLMProvider'
+        tools:
+          type: array
+          nullable: true
+          description: OpenAI-format function-calling tools.
+          items:
+            type: object
+        preference_id:
+          type: string
+          nullable: true
+          description: Preference ID for personalized or custom routing.
+        tradeoff:
+          type: string
+          nullable: true
+          description: Optimization tradeoff strategy.
+          enum:
+          - cost
+          - latency
+        cost_quality_tradeoff:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 10
+          description: Continuous cost/quality blend (0 = quality, 10 = cost).
+        hash_content:
+          type: boolean
+          default: false
+          description: Whether to hash message content for privacy.
+        metric:
+          type: string
+          default: accuracy
+          description: Optimization metric for model selection.
+        max_model_depth:
+          type: integer
+          nullable: true
+          description: Maximum number of models to consider for routing.
+        previous_session:
+          type: string
+          nullable: true
+          description: Previous session ID to link related requests.
+      required:
+      - messages
+      - llm_providers
+    LLMProvider:
+      type: object
+      description: A candidate provider/model that the router may select.
+      properties:
+        provider:
+          type: string
+          description: Provider identifier (e.g. openai, anthropic). Omit when using an OpenRouter slug.
+          example: openai
+        model:
+          type: string
+          description: Model identifier, or an OpenRouter slug (e.g. openai/gpt-4o).
+          example: gpt-4o
+        is_custom:
+          type: boolean
+          description: Set to true to describe a custom model.
+        context_length:
+          type: integer
+          description: Maximum context length (required for custom models).
+        input_price:
+          type: number
+          description: Cost per million input tokens in USD (required for custom models).
+        output_price:
+          type: number
+          description: Cost per million output tokens in USD (required for custom models).
+        latency:
+          type: number
+          description: Expected latency for the custom model.
+      required:
+      - model
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Not Diamond API key passed as a Bearer token.

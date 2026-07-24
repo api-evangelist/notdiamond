@@ -1,0 +1,123 @@
+openapi: 3.0.1
+info:
+  title: Not Diamond Custom Routers API
+  description: REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.
+  termsOfService: https://www.notdiamond.ai/terms
+  contact:
+    name: Not Diamond
+    url: https://www.notdiamond.ai
+  version: '2.0'
+servers:
+- url: https://api.notdiamond.ai/v2
+security:
+- bearerAuth: []
+tags:
+- name: Custom Routers
+paths:
+  /pzn/trainCustomRouter:
+    post:
+      operationId: trainCustomRouter
+      tags:
+      - Custom Routers
+      summary: Train a custom router.
+      description: Trains a custom router from an uploaded CSV evaluation dataset. Training is asynchronous and typically takes 5-15 minutes. Returns a preference ID used to drive personalized routing in subsequent modelSelect calls.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TrainCustomRouterRequest'
+      responses:
+        '200':
+          description: The trained router's preference ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainCustomRouterResponse'
+        '401':
+          description: Missing or invalid API key.
+        '422':
+          description: Validation error.
+  /preferences/userPreferenceCreate:
+    post:
+      operationId: createUserPreference
+      tags:
+      - Custom Routers
+      summary: Create a user preference.
+      description: Creates a user preference (router) and returns its preference ID, which can be referenced in modelSelect calls and custom router training.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPreferenceCreateRequest'
+      responses:
+        '200':
+          description: The created preference ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPreferenceCreateResponse'
+        '401':
+          description: Missing or invalid API key.
+components:
+  schemas:
+    UserPreferenceCreateResponse:
+      type: object
+      properties:
+        preference_id:
+          type: string
+    UserPreferenceCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+          description: Optional name for the preference/router.
+    TrainCustomRouterRequest:
+      type: object
+      properties:
+        dataset_file:
+          type: string
+          format: binary
+          description: CSV file with evaluation data (minimum 25 samples).
+        language:
+          type: string
+          enum:
+          - english
+          - multilingual
+        llm_providers:
+          type: string
+          description: JSON array of model providers.
+        prompt_column:
+          type: string
+          description: CSV column name containing prompts.
+        maximize:
+          type: boolean
+          description: Whether higher scores indicate better performance.
+        preference_id:
+          type: string
+          nullable: true
+          description: Existing router ID to update.
+        override:
+          type: boolean
+          nullable: true
+          default: true
+          description: Override existing router.
+      required:
+      - dataset_file
+      - language
+      - llm_providers
+      - prompt_column
+      - maximize
+    TrainCustomRouterResponse:
+      type: object
+      properties:
+        preference_id:
+          type: string
+          description: Unique identifier for the trained router.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Not Diamond API key passed as a Bearer token.

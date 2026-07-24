@@ -1,0 +1,87 @@
+openapi: 3.0.1
+info:
+  title: Not Diamond Custom Routers Models API
+  description: REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.
+  termsOfService: https://www.notdiamond.ai/terms
+  contact:
+    name: Not Diamond
+    url: https://www.notdiamond.ai
+  version: '2.0'
+servers:
+- url: https://api.notdiamond.ai/v2
+security:
+- bearerAuth: []
+tags:
+- name: Models
+paths:
+  /models:
+    get:
+      operationId: listModels
+      tags:
+      - Models
+      summary: List supported models.
+      description: Lists all supported text generation models with provider, context length, and per-million-token input/output pricing. Results are cacheable for one hour.
+      parameters:
+      - name: provider
+        in: query
+        required: false
+        description: Filter by one or more provider names.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: openrouter_only
+        in: query
+        required: false
+        description: Return only OpenRouter-supported models.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: A list of supported models.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelsListResponse'
+components:
+  schemas:
+    Model:
+      type: object
+      properties:
+        provider:
+          type: string
+          example: openai
+        model:
+          type: string
+          example: gpt-4o
+        context_length:
+          type: integer
+        input_price:
+          type: number
+          description: Cost per million input tokens in USD.
+        output_price:
+          type: number
+          description: Cost per million output tokens in USD.
+        openrouter_model:
+          type: string
+          nullable: true
+          description: OpenRouter slug if supported.
+    ModelsListResponse:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
+        total:
+          type: integer
+        deprecated_models:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Not Diamond API key passed as a Bearer token.
