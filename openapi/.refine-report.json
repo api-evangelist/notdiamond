@@ -1,0 +1,20 @@
+{
+  "provider": "notdiamond",
+  "sources": [
+    "notdiamond-custom-routers-api-openapi.yml",
+    "notdiamond-feedback-api-openapi.yml",
+    "notdiamond-model-routing-api-openapi.yml",
+    "notdiamond-models-api-openapi.yml"
+  ],
+  "outputs": [
+    "notdiamond-custom-routers-api-openapi.yml",
+    "notdiamond-feedback-api-openapi.yml",
+    "notdiamond-model-routing-api-openapi.yml",
+    "notdiamond-models-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
