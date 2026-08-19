@@ -1,0 +1,427 @@
+{
+  "item": [
+    {
+      "id": "852f08b7-0b92-4dd9-a47d-0484c0ffdb73",
+      "name": "Feedback",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "84643cd6-faba-40cc-9c09-1f6e3d4f4e7f",
+          "name": "Report outcome feedback for a routing session.",
+          "request": {
+            "name": "Report outcome feedback for a routing session.",
+            "description": {
+              "content": "Submits binary outcome feedback (0 or 1) for the provider selected in a routing session so Not Diamond can personalize future routing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report",
+                "metrics",
+                "feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": {\n    \"model\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"is_custom\": \"<boolean>\",\n    \"context_length\": \"<integer>\",\n    \"input_price\": \"<number>\",\n    \"output_price\": \"<number>\",\n    \"latency\": \"<number>\"\n  },\n  \"feedback\": {\n    \"value\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "426b15d6-b60b-4552-b0af-819fcd9adbbe",
+              "name": "Feedback accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    "metrics",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": {\n    \"model\": \"gpt-4o\",\n    \"provider\": \"openai\",\n    \"is_custom\": \"<boolean>\",\n    \"context_length\": \"<integer>\",\n    \"input_price\": \"<number>\",\n    \"output_price\": \"<number>\",\n    \"latency\": \"<number>\"\n  },\n  \"feedback\": {\n    \"value\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b54490dd-9dc4-43a5-9d7f-ef279143960e",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    "metrics",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": {\n    \"model\": \"gpt-4o\",\n    \"provider\": \"openai\",\n    \"is_custom\": \"<boolean>\",\n    \"context_length\": \"<integer>\",\n    \"input_price\": \"<number>\",\n    \"output_price\": \"<number>\",\n    \"latency\": \"<number>\"\n  },\n  \"feedback\": {\n    \"value\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5680937-ca4d-4d4d-aa05-a8f5013de719",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    "metrics",
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": {\n    \"model\": \"gpt-4o\",\n    \"provider\": \"openai\",\n    \"is_custom\": \"<boolean>\",\n    \"context_length\": \"<integer>\",\n    \"input_price\": \"<number>\",\n    \"output_price\": \"<number>\",\n    \"latency\": \"<number>\"\n  },\n  \"feedback\": {\n    \"value\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f26b85f-39d5-40e9-8cfc-4a16b6a653bb",
+          "name": "Report latency metrics for a routing session.",
+          "request": {
+            "name": "Report latency metrics for a routing session.",
+            "description": {
+              "content": "Reports observed latency (for example tokens per second) for the provider selected in a routing session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report",
+                "metrics",
+                "latency"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": {\n    \"model\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"is_custom\": \"<boolean>\",\n    \"context_length\": \"<integer>\",\n    \"input_price\": \"<number>\",\n    \"output_price\": \"<number>\",\n    \"latency\": \"<number>\"\n  },\n  \"feedback\": {\n    \"tokens_per_second\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63dda656-1cac-46e3-953c-294eed35c586",
+              "name": "Latency metrics accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    "metrics",
+                    "latency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": {\n    \"model\": \"gpt-4o\",\n    \"provider\": \"openai\",\n    \"is_custom\": \"<boolean>\",\n    \"context_length\": \"<integer>\",\n    \"input_price\": \"<number>\",\n    \"output_price\": \"<number>\",\n    \"latency\": \"<number>\"\n  },\n  \"feedback\": {\n    \"tokens_per_second\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7888c4ed-3656-4888-8fec-f27b6369d69f",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    "metrics",
+                    "latency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": {\n    \"model\": \"gpt-4o\",\n    \"provider\": \"openai\",\n    \"is_custom\": \"<boolean>\",\n    \"context_length\": \"<integer>\",\n    \"input_price\": \"<number>\",\n    \"output_price\": \"<number>\",\n    \"latency\": \"<number>\"\n  },\n  \"feedback\": {\n    \"tokens_per_second\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "96afbf81-f8f6-4e4c-aa66-60f0a1a2cfee",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    "metrics",
+                    "latency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"<string>\",\n  \"provider\": {\n    \"model\": \"gpt-4o\",\n    \"provider\": \"openai\",\n    \"is_custom\": \"<boolean>\",\n    \"context_length\": \"<integer>\",\n    \"input_price\": \"<number>\",\n    \"output_price\": \"<number>\",\n    \"latency\": \"<number>\"\n  },\n  \"feedback\": {\n    \"tokens_per_second\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.notdiamond.ai/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f8575395-cab5-4d39-8824-19c9c14ad55a",
+    "name": "Not Diamond Custom Routers Feedback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.\n\nContact Support:\n Name: Not Diamond",
+      "type": "text/plain"
+    }
+  }
+}

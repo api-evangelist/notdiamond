@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Not Diamond Custom Routers Models API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported models.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.notdiamond.ai/v2/models",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Filter by one or more provider names."
+              },
+              {
+                "name": "openrouter_only",
+                "value": "",
+                "type": "query",
+                "description": "Return only OpenRouter-supported models."
+              }
+            ]
+          },
+          "docs": "Lists all supported text generation models with provider, context length, and per-million-token input/output pricing. Results are cacheable for one hour."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

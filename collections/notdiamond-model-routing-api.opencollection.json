@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Not Diamond Custom Routers Model Routing API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Model Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Route a prompt to the best model.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.notdiamond.ai/v2/modelRouter/modelSelect",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Given OpenAI-format messages and a list of candidate LLM providers, returns the recommended provider/model along with a session ID for the routing decision. Supports cost/latency tradeoffs and personalized routing via a preference ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

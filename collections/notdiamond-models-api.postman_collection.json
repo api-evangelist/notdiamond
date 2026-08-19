@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "9b12005d-2138-4ec7-bc98-f7bde2dacc05",
+      "name": "Models",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f79bc4be-e39d-4f89-911b-564f42fda640",
+          "name": "List supported models.",
+          "request": {
+            "name": "List supported models.",
+            "description": {
+              "content": "Lists all supported text generation models with provider, context length, and per-million-token input/output pricing. Results are cacheable for one hour.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>",
+                  "description": "Filter by one or more provider names."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>",
+                  "description": "Filter by one or more provider names."
+                },
+                {
+                  "disabled": false,
+                  "key": "openrouter_only",
+                  "value": "false",
+                  "description": "Return only OpenRouter-supported models."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62ccb1a4-60af-45ab-a73c-23ed3e1a1715",
+              "name": "A list of supported models.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "openrouter_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"models\": [\n    {\n      \"provider\": \"openai\",\n      \"model\": \"gpt-4o\",\n      \"context_length\": 263,\n      \"input_price\": 70.91583834655468,\n      \"output_price\": 6864.901631650425,\n      \"openrouter_model\": \"string\"\n    },\n    {\n      \"provider\": \"openai\",\n      \"model\": \"gpt-4o\",\n      \"context_length\": 4489,\n      \"input_price\": 710.9022840718015,\n      \"output_price\": 2873.887661963481,\n      \"openrouter_model\": \"string\"\n    }\n  ],\n  \"total\": 1361,\n  \"deprecated_models\": [\n    {\n      \"provider\": \"openai\",\n      \"model\": \"gpt-4o\",\n      \"context_length\": 5564,\n      \"input_price\": 1651.4692143961706,\n      \"output_price\": 1802.163191036158,\n      \"openrouter_model\": \"string\"\n    },\n    {\n      \"provider\": \"openai\",\n      \"model\": \"gpt-4o\",\n      \"context_length\": 5618,\n      \"input_price\": 9017.919191792596,\n      \"output_price\": 2289.119180658881,\n      \"openrouter_model\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.notdiamond.ai/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5f966540-d31b-4928-81a4-d91d03f3005d",
+    "name": "Not Diamond Custom Routers Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.\n\nContact Support:\n Name: Not Diamond",
+      "type": "text/plain"
+    }
+  }
+}

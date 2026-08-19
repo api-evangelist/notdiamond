@@ -1,0 +1,238 @@
+{
+  "item": [
+    {
+      "id": "46d0c14b-1dde-40e0-89f7-5d44b11f8727",
+      "name": "Model Routing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e1b67e9-5a97-4656-bad1-62a82824565b",
+          "name": "Route a prompt to the best model.",
+          "request": {
+            "name": "Route a prompt to the best model.",
+            "description": {
+              "content": "Given OpenAI-format messages and a list of candidate LLM providers, returns the recommended provider/model along with a session ID for the routing decision. Supports cost/latency tradeoffs and personalized routing via a preference ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "modelRouter",
+                "modelSelect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"llm_providers\": [\n    {\n      \"model\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    },\n    {\n      \"model\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    }\n  ],\n  \"tools\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"preference_id\": \"<string>\",\n  \"tradeoff\": \"<string>\",\n  \"cost_quality_tradeoff\": \"<integer>\",\n  \"hash_content\": false,\n  \"metric\": \"accuracy\",\n  \"max_model_depth\": \"<integer>\",\n  \"previous_session\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "70870186-1390-49e4-b884-bd15c8acf5d6",
+              "name": "The recommended provider(s) and a session ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "modelRouter",
+                    "modelSelect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"llm_providers\": [\n    {\n      \"model\": \"gpt-4o\",\n      \"provider\": \"openai\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    },\n    {\n      \"model\": \"gpt-4o\",\n      \"provider\": \"openai\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    }\n  ],\n  \"tools\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"preference_id\": \"<string>\",\n  \"tradeoff\": \"<string>\",\n  \"cost_quality_tradeoff\": \"<integer>\",\n  \"hash_content\": false,\n  \"metric\": \"accuracy\",\n  \"max_model_depth\": \"<integer>\",\n  \"previous_session\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"providers\": [\n    {\n      \"model\": \"gpt-4o\",\n      \"provider\": \"openai\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    },\n    {\n      \"model\": \"gpt-4o\",\n      \"provider\": \"openai\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    }\n  ],\n  \"session_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c14b915d-4471-4f03-8079-914a92699380",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "modelRouter",
+                    "modelSelect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"llm_providers\": [\n    {\n      \"model\": \"gpt-4o\",\n      \"provider\": \"openai\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    },\n    {\n      \"model\": \"gpt-4o\",\n      \"provider\": \"openai\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    }\n  ],\n  \"tools\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"preference_id\": \"<string>\",\n  \"tradeoff\": \"<string>\",\n  \"cost_quality_tradeoff\": \"<integer>\",\n  \"hash_content\": false,\n  \"metric\": \"accuracy\",\n  \"max_model_depth\": \"<integer>\",\n  \"previous_session\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f9bd31f-ddd7-4199-a35b-38265f422685",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "modelRouter",
+                    "modelSelect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"llm_providers\": [\n    {\n      \"model\": \"gpt-4o\",\n      \"provider\": \"openai\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    },\n    {\n      \"model\": \"gpt-4o\",\n      \"provider\": \"openai\",\n      \"is_custom\": \"<boolean>\",\n      \"context_length\": \"<integer>\",\n      \"input_price\": \"<number>\",\n      \"output_price\": \"<number>\",\n      \"latency\": \"<number>\"\n    }\n  ],\n  \"tools\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"preference_id\": \"<string>\",\n  \"tradeoff\": \"<string>\",\n  \"cost_quality_tradeoff\": \"<integer>\",\n  \"hash_content\": false,\n  \"metric\": \"accuracy\",\n  \"max_model_depth\": \"<integer>\",\n  \"previous_session\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.notdiamond.ai/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "67b56814-3146-4e2b-8431-adea01241bbf",
+    "name": "Not Diamond Custom Routers Model Routing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.\n\nContact Support:\n Name: Not Diamond",
+      "type": "text/plain"
+    }
+  }
+}

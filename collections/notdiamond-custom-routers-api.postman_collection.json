@@ -1,0 +1,601 @@
+{
+  "item": [
+    {
+      "id": "031ead38-6934-4f8b-8cbf-6e8d8f99f55a",
+      "name": "Custom Routers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb4ff7fe-9343-4a38-b47e-73f3511678cc",
+          "name": "Train a custom router.",
+          "request": {
+            "name": "Train a custom router.",
+            "description": {
+              "content": "Trains a custom router from an uploaded CSV evaluation dataset. Training is asynchronous and typically takes 5-15 minutes. Returns a preference ID used to drive personalized routing in subsequent modelSelect calls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pzn",
+                "trainCustomRouter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "dataset_file",
+                  "type": "file",
+                  "description": "(Required) CSV file with evaluation data (minimum 25 samples)."
+                },
+                {
+                  "key": "language",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required)  (This can only be one of english,multilingual)"
+                },
+                {
+                  "key": "llm_providers",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) JSON array of model providers."
+                },
+                {
+                  "key": "prompt_column",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) CSV column name containing prompts."
+                },
+                {
+                  "key": "maximize",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "(Required) Whether higher scores indicate better performance."
+                },
+                {
+                  "key": "preference_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Existing router ID to update."
+                },
+                {
+                  "key": "override",
+                  "value": "true",
+                  "type": "text",
+                  "description": "Override existing router."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "56b911a2-a8a8-4f0d-a1ca-ec5ada8dedba",
+              "name": "The trained router's preference ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pzn",
+                    "trainCustomRouter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with evaluation data (minimum 25 samples).",
+                        "type": "text/plain"
+                      },
+                      "key": "dataset_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required)  (This can only be one of english,multilingual)",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON array of model providers.",
+                        "type": "text/plain"
+                      },
+                      "key": "llm_providers",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) CSV column name containing prompts.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt_column",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Whether higher scores indicate better performance.",
+                        "type": "text/plain"
+                      },
+                      "key": "maximize",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Existing router ID to update.",
+                        "type": "text/plain"
+                      },
+                      "key": "preference_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Override existing router.",
+                        "type": "text/plain"
+                      },
+                      "key": "override",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"preference_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a527399b-096a-4988-8d19-5566ae16998a",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pzn",
+                    "trainCustomRouter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with evaluation data (minimum 25 samples).",
+                        "type": "text/plain"
+                      },
+                      "key": "dataset_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required)  (This can only be one of english,multilingual)",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON array of model providers.",
+                        "type": "text/plain"
+                      },
+                      "key": "llm_providers",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) CSV column name containing prompts.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt_column",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Whether higher scores indicate better performance.",
+                        "type": "text/plain"
+                      },
+                      "key": "maximize",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Existing router ID to update.",
+                        "type": "text/plain"
+                      },
+                      "key": "preference_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Override existing router.",
+                        "type": "text/plain"
+                      },
+                      "key": "override",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a15a66a-f4ac-4094-8a29-5ef615c68bde",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pzn",
+                    "trainCustomRouter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with evaluation data (minimum 25 samples).",
+                        "type": "text/plain"
+                      },
+                      "key": "dataset_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required)  (This can only be one of english,multilingual)",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON array of model providers.",
+                        "type": "text/plain"
+                      },
+                      "key": "llm_providers",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) CSV column name containing prompts.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt_column",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Whether higher scores indicate better performance.",
+                        "type": "text/plain"
+                      },
+                      "key": "maximize",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Existing router ID to update.",
+                        "type": "text/plain"
+                      },
+                      "key": "preference_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Override existing router.",
+                        "type": "text/plain"
+                      },
+                      "key": "override",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af0c1a80-69f4-4462-85be-a803ca66aff1",
+          "name": "Create a user preference.",
+          "request": {
+            "name": "Create a user preference.",
+            "description": {
+              "content": "Creates a user preference (router) and returns its preference ID, which can be referenced in modelSelect calls and custom router training.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "preferences",
+                "userPreferenceCreate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a162ba7b-6301-4a1e-b999-37dc2511c785",
+              "name": "The created preference ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "preferences",
+                    "userPreferenceCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"preference_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4725019-52d1-420f-ad5f-b32896071d32",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "preferences",
+                    "userPreferenceCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.notdiamond.ai/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8646ea2f-fae2-4479-a993-cdd21130c2ad",
+    "name": "Not Diamond Custom Routers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.\n\nContact Support:\n Name: Not Diamond",
+      "type": "text/plain"
+    }
+  }
+}

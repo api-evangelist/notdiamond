@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Not Diamond Custom Routers API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Routers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Train a custom router.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.notdiamond.ai/v2/pzn/trainCustomRouter",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Trains a custom router from an uploaded CSV evaluation dataset. Training is asynchronous and typically takes 5-15 minutes. Returns a preference ID used to drive personalized routing in subsequent modelSelect calls."
+        },
+        {
+          "info": {
+            "name": "Create a user preference.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.notdiamond.ai/v2/preferences/userPreferenceCreate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a user preference (router) and returns its preference ID, which can be referenced in modelSelect calls and custom router training."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
