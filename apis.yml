@@ -6,6 +6,18 @@ description: Not Diamond is an AI model router that determines the best LLM to c
   for any given prompt. Its REST API routes each request to the optimal model across
   providers based on quality, cost, and latency tradeoffs, accepts real-time feedback
   to personalize routing, and can train custom routers from evaluation datasets.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
