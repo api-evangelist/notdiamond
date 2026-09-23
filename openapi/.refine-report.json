@@ -1,10 +1,7 @@
 {
   "provider": "notdiamond",
   "sources": [
-    "notdiamond-custom-routers-api-openapi.yml",
-    "notdiamond-feedback-api-openapi.yml",
-    "notdiamond-model-routing-api-openapi.yml",
-    "notdiamond-models-api-openapi.yml"
+    "_original/notdiamond-openapi.yml"
   ],
   "outputs": [
     "notdiamond-custom-routers-api-openapi.yml",
@@ -15,6 +12,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "notdiamond-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "notdiamond-openapi.yml: declared missing tag: Custom Routers",
+    "notdiamond-openapi.yml: declared missing tag: Feedback",
+    "notdiamond-openapi.yml: declared missing tag: Model Routing",
+    "notdiamond-openapi.yml: declared missing tag: Models",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "notdiamond-custom-routers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "notdiamond-feedback-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "notdiamond-model-routing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "notdiamond-models-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

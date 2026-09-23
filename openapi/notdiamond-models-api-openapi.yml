@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Not Diamond Custom Routers Models API
+  title: Not Diamond Models API
   description: REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.
   termsOfService: https://www.notdiamond.ai/terms
   contact:
@@ -19,7 +19,7 @@ paths:
       operationId: listModels
       tags:
       - Models
-      summary: List supported models.
+      summary: List supported models
       description: Lists all supported text generation models with provider, context length, and per-million-token input/output pricing. Results are cacheable for one hour.
       parameters:
       - name: provider
@@ -64,8 +64,9 @@ components:
           type: number
           description: Cost per million output tokens in USD.
         openrouter_model:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: OpenRouter slug if supported.
     ModelsListResponse:
       type: object

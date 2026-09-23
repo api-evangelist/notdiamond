@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Not Diamond Custom Routers Feedback API
+  title: Not Diamond Feedback API
   description: REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.
   termsOfService: https://www.notdiamond.ai/terms
   contact:
@@ -19,7 +19,7 @@ paths:
       operationId: reportFeedback
       tags:
       - Feedback
-      summary: Report outcome feedback for a routing session.
+      summary: Report outcome feedback for a routing session
       description: Submits binary outcome feedback (0 or 1) for the provider selected in a routing session so Not Diamond can personalize future routing.
       requestBody:
         required: true
@@ -39,7 +39,7 @@ paths:
       operationId: reportLatency
       tags:
       - Feedback
-      summary: Report latency metrics for a routing session.
+      summary: Report latency metrics for a routing session
       description: Reports observed latency (for example tokens per second) for the provider selected in a routing session.
       requestBody:
         required: true
@@ -56,18 +56,23 @@ paths:
           description: Validation error.
 components:
   schemas:
-    LatencyRequest:
+    FeedbackRequest:
       type: object
       properties:
         session_id:
           type: string
+          description: The session ID returned by modelSelect.
         provider:
           $ref: '#/components/schemas/LLMProvider'
         feedback:
           type: object
+          description: Feedback payload. The outcome value must be 0 or 1.
           properties:
-            tokens_per_second:
-              type: number
+            value:
+              type: integer
+              enum:
+              - 0
+              - 1
       required:
       - session_id
       - provider
@@ -101,23 +106,18 @@ components:
           description: Expected latency for the custom model.
       required:
       - model
-    FeedbackRequest:
+    LatencyRequest:
       type: object
       properties:
         session_id:
           type: string
-          description: The session ID returned by modelSelect.
         provider:
           $ref: '#/components/schemas/LLMProvider'
         feedback:
           type: object
-          description: Feedback payload. The outcome value must be 0 or 1.
           properties:
-            value:
-              type: integer
-              enum:
-              - 0
-              - 1
+            tokens_per_second:
+              type: number
       required:
       - session_id
       - provider

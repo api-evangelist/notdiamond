@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Not Diamond Custom Routers Model Routing API
+  title: Not Diamond Model Routing API
   description: REST API for the Not Diamond AI model router. The modelSelect endpoint routes a prompt to the best LLM across providers based on quality, cost, and latency tradeoffs. Additional endpoints list supported models, report feedback and latency metrics to personalize routing in real time, and train custom routers from evaluation datasets.
   termsOfService: https://www.notdiamond.ai/terms
   contact:
@@ -19,7 +19,7 @@ paths:
       operationId: modelSelect
       tags:
       - Model Routing
-      summary: Route a prompt to the best model.
+      summary: Route a prompt to the best model
       description: Given OpenAI-format messages and a list of candidate LLM providers, returns the recommended provider/model along with a session ID for the routing decision. Supports cost/latency tradeoffs and personalized routing via a preference ID.
       requestBody:
         required: true
@@ -52,17 +52,6 @@ components:
       required:
       - role
       - content
-    ModelSelectResponse:
-      type: object
-      properties:
-        providers:
-          type: array
-          description: List containing the selected provider/model.
-          items:
-            $ref: '#/components/schemas/LLMProvider'
-        session_id:
-          type: string
-          description: Unique session ID for this routing decision.
     ModelSelectRequest:
       type: object
       properties:
@@ -77,25 +66,29 @@ components:
           items:
             $ref: '#/components/schemas/LLMProvider'
         tools:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: OpenAI-format function-calling tools.
           items:
             type: object
         preference_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Preference ID for personalized or custom routing.
         tradeoff:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Optimization tradeoff strategy.
           enum:
           - cost
           - latency
         cost_quality_tradeoff:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           minimum: 0
           maximum: 10
           description: Continuous cost/quality blend (0 = quality, 10 = cost).
@@ -108,12 +101,14 @@ components:
           default: accuracy
           description: Optimization metric for model selection.
         max_model_depth:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Maximum number of models to consider for routing.
         previous_session:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Previous session ID to link related requests.
       required:
       - messages
@@ -147,6 +142,17 @@ components:
           description: Expected latency for the custom model.
       required:
       - model
+    ModelSelectResponse:
+      type: object
+      properties:
+        providers:
+          type: array
+          description: List containing the selected provider/model.
+          items:
+            $ref: '#/components/schemas/LLMProvider'
+        session_id:
+          type: string
+          description: Unique session ID for this routing decision.
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,0 +1,27 @@
+# Front Door AI Index — notdiamond — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: notdiamond
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.notdiamond.ai
+  final_host: www.notdiamond.ai
+  ownership: own
+  owner: notdiamond
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 4
+  host_score: 4
+  density: 10.18
+  words: 393
+  tiers:
+    agentic: 1
+    core: 3
+    model: 0
+  ambiguous: 5
+  top_terms:
+    agent: 5
+    AI: 3
+    inference: 1
