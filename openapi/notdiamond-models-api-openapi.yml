@@ -46,6 +46,19 @@ paths:
                 $ref: '#/components/schemas/ModelsListResponse'
 components:
   schemas:
+    ModelsListResponse:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
+        total:
+          type: integer
+        deprecated_models:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
     Model:
       type: object
       properties:
@@ -68,19 +81,6 @@ components:
           - string
           - 'null'
           description: OpenRouter slug if supported.
-    ModelsListResponse:
-      type: object
-      properties:
-        models:
-          type: array
-          items:
-            $ref: '#/components/schemas/Model'
-        total:
-          type: integer
-        deprecated_models:
-          type: array
-          items:
-            $ref: '#/components/schemas/Model'
   securitySchemes:
     bearerAuth:
       type: http

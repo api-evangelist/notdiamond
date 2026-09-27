@@ -40,6 +40,17 @@ paths:
           description: Validation error.
 components:
   schemas:
+    ModelSelectResponse:
+      type: object
+      properties:
+        providers:
+          type: array
+          description: List containing the selected provider/model.
+          items:
+            $ref: '#/components/schemas/LLMProvider'
+        session_id:
+          type: string
+          description: Unique session ID for this routing decision.
     Message:
       type: object
       description: An OpenAI-format chat message.
@@ -142,17 +153,6 @@ components:
           description: Expected latency for the custom model.
       required:
       - model
-    ModelSelectResponse:
-      type: object
-      properties:
-        providers:
-          type: array
-          description: List containing the selected provider/model.
-          items:
-            $ref: '#/components/schemas/LLMProvider'
-        session_id:
-          type: string
-          description: Unique session ID for this routing decision.
   securitySchemes:
     bearerAuth:
       type: http
