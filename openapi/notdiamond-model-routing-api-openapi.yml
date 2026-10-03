@@ -51,18 +51,6 @@ components:
         session_id:
           type: string
           description: Unique session ID for this routing decision.
-    Message:
-      type: object
-      description: An OpenAI-format chat message.
-      properties:
-        role:
-          type: string
-          example: user
-        content:
-          type: string
-      required:
-      - role
-      - content
     ModelSelectRequest:
       type: object
       properties:
@@ -153,6 +141,18 @@ components:
           description: Expected latency for the custom model.
       required:
       - model
+    Message:
+      type: object
+      description: An OpenAI-format chat message.
+      properties:
+        role:
+          type: string
+          example: user
+        content:
+          type: string
+      required:
+      - role
+      - content
   securitySchemes:
     bearerAuth:
       type: http

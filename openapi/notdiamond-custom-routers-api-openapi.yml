@@ -62,6 +62,20 @@ paths:
           description: Missing or invalid API key.
 components:
   schemas:
+    UserPreferenceCreateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Optional name for the preference/router.
+    TrainCustomRouterResponse:
+      type: object
+      properties:
+        preference_id:
+          type: string
+          description: Unique identifier for the trained router.
     TrainCustomRouterRequest:
       type: object
       properties:
@@ -100,25 +114,11 @@ components:
       - llm_providers
       - prompt_column
       - maximize
-    TrainCustomRouterResponse:
-      type: object
-      properties:
-        preference_id:
-          type: string
-          description: Unique identifier for the trained router.
     UserPreferenceCreateResponse:
       type: object
       properties:
         preference_id:
           type: string
-    UserPreferenceCreateRequest:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Optional name for the preference/router.
   securitySchemes:
     bearerAuth:
       type: http

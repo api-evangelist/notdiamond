@@ -77,6 +77,22 @@ components:
       - session_id
       - provider
       - feedback
+    LatencyRequest:
+      type: object
+      properties:
+        session_id:
+          type: string
+        provider:
+          $ref: '#/components/schemas/LLMProvider'
+        feedback:
+          type: object
+          properties:
+            tokens_per_second:
+              type: number
+      required:
+      - session_id
+      - provider
+      - feedback
     LLMProvider:
       type: object
       description: A candidate provider/model that the router may select.
@@ -106,22 +122,6 @@ components:
           description: Expected latency for the custom model.
       required:
       - model
-    LatencyRequest:
-      type: object
-      properties:
-        session_id:
-          type: string
-        provider:
-          $ref: '#/components/schemas/LLMProvider'
-        feedback:
-          type: object
-          properties:
-            tokens_per_second:
-              type: number
-      required:
-      - session_id
-      - provider
-      - feedback
   securitySchemes:
     bearerAuth:
       type: http
