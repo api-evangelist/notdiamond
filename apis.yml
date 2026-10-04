@@ -146,6 +146,9 @@ apis:
   - type: APIReference
     url: https://docs.notdiamond.ai/reference/train_custom_router_v2_pzn_traincustomrouter_post
 common:
+- type: CapabilityMap
+  url: capabilities/notdiamond-capability-edges.yml
+  name: Not Diamond Business Capability Map
 - type: AgenticAccess
   url: agentic-access/notdiamond-agentic-access.yml
 - type: DomainSecurity

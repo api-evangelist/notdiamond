@@ -1,0 +1,36 @@
+slug: notdiamond
+provider: Not Diamond
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Custom Routers
+  spec_file: notdiamond-custom-routers-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.75
+  evidence: 'POST /pzn/trainCustomRouter ''Train a custom router''; description: ''train custom routers
+    from evaluation datasets'''
+  reason: The operations train a model (router) from evaluation datasets and record user preferences that
+    personalise model selection — ML model lifecycle work, i.e. AI management. 'Routers' here is a model
+    artefact, not network infrastructure.
+- tag: Model Routing
+  spec_file: notdiamond-model-routing-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.75
+  evidence: POST /modelRouter/modelSelect  modelSelect  Route a prompt to the best model
+  reason: The operation selects the optimal LLM across providers for a given prompt based on quality,
+    cost and latency — model serving/selection within the AI/ML model lifecycle (MLOps). Not an industry
+    business capability; Artificial Intelligence Management is the honest fit for this devtool.
