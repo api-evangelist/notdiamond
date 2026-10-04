@@ -56,6 +56,22 @@ paths:
           description: Validation error.
 components:
   schemas:
+    LatencyRequest:
+      type: object
+      properties:
+        session_id:
+          type: string
+        provider:
+          $ref: '#/components/schemas/LLMProvider'
+        feedback:
+          type: object
+          properties:
+            tokens_per_second:
+              type: number
+      required:
+      - session_id
+      - provider
+      - feedback
     FeedbackRequest:
       type: object
       properties:
@@ -73,22 +89,6 @@ components:
               enum:
               - 0
               - 1
-      required:
-      - session_id
-      - provider
-      - feedback
-    LatencyRequest:
-      type: object
-      properties:
-        session_id:
-          type: string
-        provider:
-          $ref: '#/components/schemas/LLMProvider'
-        feedback:
-          type: object
-          properties:
-            tokens_per_second:
-              type: number
       required:
       - session_id
       - provider
