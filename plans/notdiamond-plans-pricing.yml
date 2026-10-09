@@ -1,84 +1,58 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Not Diamond
-providerId: notdiamond
-created: '2026-06-20'
-modified: '2026-06-20'
-reconciled: false
-tags:
-- AI
-- LLM
-- Model Routing
-- Router
-- Orchestration
-- Plans
-description: >-
-  Not Diamond offers a free-to-try Early Access tier for developers and small
-  teams and a custom-priced Enterprise tier. The routing service is billed as a
-  small fixed fee per million tokens, which Not Diamond positions as cheaper than
-  standard LLM costs; the company cites typical 20-40% cost savings from routing.
-  Exact per-token routing fees and quotas are not publicly enumerated, so usage
-  pricing is left unreconciled.
-notes: >-
-  Pricing reflects the Not Diamond pricing page (Early Access free to try;
-  Enterprise contact sales). Per-million-token routing fee amounts are not
-  publicly listed; verify exact rates with Not Diamond on reconciliation.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.notdiamond.ai/pricing
 sources:
 - https://www.notdiamond.ai/pricing
-- https://docs.notdiamond.ai
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T112025
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: per-call
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: Two tiers; PAYG priced per million tokens routed, Enterprise negotiated. Savings calculator figures
+  are illustrative, not prices.
+plan_count: 2
+currency: USD
 plans:
-- id: notdiamond-early-access
-  name: Early Access
-  type: free
-  description: >-
-    Free-to-try tier for developers and small teams. Includes multi-harness
-    support, a savings/usage dashboard, continuous learning, and
-    privacy-preserving routing.
-  entries:
-  - label: Routing Fee
-    name: routing_fee
-    type: usage
-    metric: tokens
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1000000
-    price: small fixed fee per 1M tokens (see provider)
-    userMultiplied: false
-  elements:
-  - name: Model Select Routing
-  - name: Multi-Harness Support
-  - name: Savings / Usage Dashboard
-  - name: Continuous Learning
-  - name: Privacy-Preserving Routing
-  - name: Feedback Personalization
-  - name: Custom Routers
-- id: notdiamond-enterprise
-  name: Enterprise
-  type: enterprise
-  description: >-
-    For enterprise teams ready to scale. Adds organization-wide analytics,
-    advanced security and admin controls, MDM deployments, SSO with SAML, SLAs,
-    and 24/7 support. Custom pricing.
-  entries:
-  - label: Enterprise Agreement
-    name: enterprise
-    type: flat
-    metric: contract
-    limit: -1
-    timeFrame: year
-    geo: global
-    unit: 1
-    price: contact sales
-    userMultiplied: false
-  elements:
-  - name: Organization-Wide Analytics
-  - name: Advanced Security & Admin Controls
-  - name: MDM Deployments
-  - name: SSO with SAML
-  - name: SLAs
-  - name: 24/7 Support
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+- name: Pay-as-you-go
+  price_text: $0.05 per million tokens routed
+  price: 0.05
+  currency: USD
+  period: per-use
+  unit: per million tokens routed
+  included_quota: Multi-harness support, Multi-provider support, Savings and usage dashboard, Continuous
+    learning from harness usage
+- name: Enterprise
+  price_text: Contact us
+  period: none
+  included_quota: Volume-based discounts, Organization-wide analytics, Advanced security and admin controls,
+    SSO with SAML, Privacy-preserving deployment
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  units:
+  - token
+  plans:
+  - name: Pay-as-you-go
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
