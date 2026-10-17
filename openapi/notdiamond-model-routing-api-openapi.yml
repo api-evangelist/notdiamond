@@ -40,6 +40,58 @@ paths:
           description: Validation error.
 components:
   schemas:
+    LLMProvider:
+      type: object
+      description: A candidate provider/model that the router may select.
+      properties:
+        provider:
+          type: string
+          description: Provider identifier (e.g. openai, anthropic). Omit when using an OpenRouter slug.
+          example: openai
+        model:
+          type: string
+          description: Model identifier, or an OpenRouter slug (e.g. openai/gpt-4o).
+          example: gpt-4o
+        is_custom:
+          type: boolean
+          description: Set to true to describe a custom model.
+        context_length:
+          type: integer
+          description: Maximum context length (required for custom models).
+        input_price:
+          type: number
+          description: Cost per million input tokens in USD (required for custom models).
+        output_price:
+          type: number
+          description: Cost per million output tokens in USD (required for custom models).
+        latency:
+          type: number
+          description: Expected latency for the custom model.
+      required:
+      - model
+    Message:
+      type: object
+      description: An OpenAI-format chat message.
+      properties:
+        role:
+          type: string
+          example: user
+        content:
+          type: string
+      required:
+      - role
+      - content
+    ModelSelectResponse:
+      type: object
+      properties:
+        providers:
+          type: array
+          description: List containing the selected provider/model.
+          items:
+            $ref: '#/components/schemas/LLMProvider'
+        session_id:
+          type: string
+          description: Unique session ID for this routing decision.
     ModelSelectRequest:
       type: object
       properties:
@@ -101,58 +153,6 @@ components:
       required:
       - messages
       - llm_providers
-    LLMProvider:
-      type: object
-      description: A candidate provider/model that the router may select.
-      properties:
-        provider:
-          type: string
-          description: Provider identifier (e.g. openai, anthropic). Omit when using an OpenRouter slug.
-          example: openai
-        model:
-          type: string
-          description: Model identifier, or an OpenRouter slug (e.g. openai/gpt-4o).
-          example: gpt-4o
-        is_custom:
-          type: boolean
-          description: Set to true to describe a custom model.
-        context_length:
-          type: integer
-          description: Maximum context length (required for custom models).
-        input_price:
-          type: number
-          description: Cost per million input tokens in USD (required for custom models).
-        output_price:
-          type: number
-          description: Cost per million output tokens in USD (required for custom models).
-        latency:
-          type: number
-          description: Expected latency for the custom model.
-      required:
-      - model
-    ModelSelectResponse:
-      type: object
-      properties:
-        providers:
-          type: array
-          description: List containing the selected provider/model.
-          items:
-            $ref: '#/components/schemas/LLMProvider'
-        session_id:
-          type: string
-          description: Unique session ID for this routing decision.
-    Message:
-      type: object
-      description: An OpenAI-format chat message.
-      properties:
-        role:
-          type: string
-          example: user
-        content:
-          type: string
-      required:
-      - role
-      - content
   securitySchemes:
     bearerAuth:
       type: http

@@ -62,11 +62,6 @@ paths:
           description: Missing or invalid API key.
 components:
   schemas:
-    UserPreferenceCreateResponse:
-      type: object
-      properties:
-        preference_id:
-          type: string
     TrainCustomRouterRequest:
       type: object
       properties:
@@ -119,6 +114,11 @@ components:
         preference_id:
           type: string
           description: Unique identifier for the trained router.
+    UserPreferenceCreateResponse:
+      type: object
+      properties:
+        preference_id:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
