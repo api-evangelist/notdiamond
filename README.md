@@ -1,4 +1,4 @@
-# Not Diamond (notdiamond)
+# Not Diamond
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,115 +66,123 @@
 
 Not Diamond is an AI model router that determines the best LLM to call for any given prompt. Its REST API routes each request to the optimal model across providers based on quality, cost, and latency tradeoffs, accepts real-time feedback to personalize routing, and can train custom routers from evaluation datasets.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/notdiamond/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/notdiamond/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · LLM · Model Routing · Router · Orchestration
 
-## Tags
+## Not Diamond on APIs.io
 
-- AI
-- LLM
-- Model Routing
-- Router
-- Orchestration
+Everything profiled for Not Diamond is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/notdiamond/](https://apis.io/providers/notdiamond/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Not Diamond Custom Routers API](https://apis.io/apis/notdiamond/notdiamond-custom-routers-api/) — The Custom Routers API from Not Diamond — 2 operation(s) for custom routers.
+- [Not Diamond Feedback API](https://apis.io/apis/notdiamond/notdiamond-feedback-api/) — The Feedback API from Not Diamond — 2 operation(s) for feedback.
+- [Not Diamond Model Routing API](https://apis.io/apis/notdiamond/notdiamond-model-routing-api/) — The Model Routing API from Not Diamond — 1 operation(s) for model routing.
+- [Not Diamond Models API](https://apis.io/apis/notdiamond/notdiamond-models-api/) — The Models API from Not Diamond — 1 operation(s) for models.
 
-## APIs
+### Published properties
 
-### Not Diamond Model Select API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Routes a prompt to the best available LLM. Submit OpenAI-format messages and a list of candidate providers, and the modelSelect endpoint returns the recommended provider/model plus a session ID, honoring cost/latency/quality tradeoffs and an optional preference ID for personalized or custom routing.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.notdiamond.ai/reference/token_model_select_v2_modelrouter_modelselect_post](https://docs.notdiamond.ai/reference/token_model_select_v2_modelrouter_modelselect_post)
-- **Base URL:** `https://api.notdiamond.ai/v2`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Notdiamond Agentic Access](https://apis.io/agentic-access/notdiamond/notdiamond-agentic-access/)
 
-- Model Routing
-- Model Select
-- Routing
-- LLM
+#### Collections (5)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.notdiamond.ai/docs/quickstart)
-- [API Reference](https://docs.notdiamond.ai/reference/token_model_select_v2_modelrouter_modelselect_post)
-- [OpenAPI](openapi/notdiamond-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/notdiamond.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/notdiamond.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Not Diamond API](https://apis.io/collections/notdiamond/open-notdiamond/)
+- [Not Diamond Custom Routers API](https://apis.io/collections/notdiamond/open-notdiamond-custom-routers-api/)
+- [Not Diamond Custom Routers Feedback API](https://apis.io/collections/notdiamond/open-notdiamond-feedback-api/)
+- [Not Diamond Custom Routers Model Routing API](https://apis.io/collections/notdiamond/open-notdiamond-model-routing-api/)
+- [Not Diamond Custom Routers Models API](https://apis.io/collections/notdiamond/open-notdiamond-models-api/)
 
-### Not Diamond Models API
+#### Security (2)
 
-Lists supported text generation models with provider, context length, and per-million-token input/output pricing, with optional filtering by provider or OpenRouter support.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.notdiamond.ai/reference/list_models_v2_models_get](https://docs.notdiamond.ai/reference/list_models_v2_models_get)
-- **Base URL:** `https://api.notdiamond.ai/v2`
+- [Notdiamond Authentication](https://apis.io/security/notdiamond/notdiamond-authentication/)
+- [Notdiamond Domain Security](https://apis.io/security/notdiamond/notdiamond-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Models
-- Catalog
+Published plans, tiers and prices.
 
-#### Properties
+- [Notdiamond Plans Pricing](https://apis.io/plans/notdiamond/notdiamond-plans-pricing/)
 
-- [API Reference](https://docs.notdiamond.ai/reference/list_models_v2_models_get)
-- [OpenAPI](openapi/notdiamond-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/notdiamond.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/notdiamond.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Not Diamond Feedback API
+Published request limits.
 
-Reports outcome feedback and latency metrics against a routing session so Not Diamond can continuously personalize routing decisions in real time to an application's end users.
+- [Notdiamond Rate Limits](https://apis.io/rate-limits/notdiamond/notdiamond-rate-limits/)
 
-- **Human URL:** [https://docs.notdiamond.ai/docs/real-time-personalization](https://docs.notdiamond.ai/docs/real-time-personalization)
-- **Base URL:** `https://api.notdiamond.ai/v2`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Feedback
-- Personalization
-- Metrics
+- [Notdiamond Finops](https://apis.io/finops/notdiamond/notdiamond-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.notdiamond.ai/docs/real-time-personalization)
-- [OpenAPI](openapi/notdiamond-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/notdiamond.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/notdiamond.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Not Diamond Custom Routers API
-
-Trains a custom router from an uploaded CSV evaluation dataset and creates or updates a user preference, returning a preference ID used to drive personalized routing in subsequent modelSelect calls.
-
-- **Human URL:** [https://docs.notdiamond.ai/reference/train_custom_router_v2_pzn_traincustomrouter_post](https://docs.notdiamond.ai/reference/train_custom_router_v2_pzn_traincustomrouter_post)
-- **Base URL:** `https://api.notdiamond.ai/v2`
-
-#### Tags
-
-- Custom Routers
-- Training
-- Personalization
-
-#### Properties
-
-- [API Reference](https://docs.notdiamond.ai/reference/train_custom_router_v2_pzn_traincustomrouter_post)
-- [OpenAPI](openapi/notdiamond-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/notdiamond.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/notdiamond.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/Not-Diamond)
-- [LinkedIn](https://www.linkedin.com/company/not-diamond)
 - [Website](https://www.notdiamond.ai)
 - [Documentation](https://docs.notdiamond.ai)
-- [Plans](plans/notdiamond-plans-pricing.yml)
-- [Rate Limits](rate-limits/notdiamond-rate-limits.yml)
-- [Fin Ops](finops/notdiamond-finops.yml)
+- [Pricing](https://www.notdiamond.ai/pricing)
+- [Blog](https://www.notdiamond.ai/blog)
+- [GitHub](https://github.com/Not-Diamond)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.6 |
+| Contract governance | 0.0 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 31.6 |
+
+**Agent readiness 19.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/notdiamond/](https://apis.io/providers/notdiamond/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Not Diamond: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/notdiamond/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
